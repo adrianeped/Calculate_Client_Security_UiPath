@@ -3,6 +3,7 @@
   "description": "UiPath class",
   "main": "Main.xaml",
   "dependencies": {
+    "Alphabet.Workflow.Activities": "[3.2.0]",
     "UiPath.Excel.Activities": "[2.10.4]",
     "UiPath.System.Activities": "[21.4.0]",
     "UiPath.UIAutomation.Activities": "[21.4.3]"
