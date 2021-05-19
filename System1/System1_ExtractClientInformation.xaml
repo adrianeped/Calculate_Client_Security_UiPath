@@ -1,8 +1,8 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="System1_ExtractClientInformation" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="ClientID" Type="OutArgument(x:String)" />
-    <x:Property Name="ClientName" Type="OutArgument(x:String)" />
-    <x:Property Name="ClientCountry" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_out_strClientID" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_out_strClientName" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_out_strClientCountry" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -71,7 +71,6 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="System1_ExtractClientInformation" sap:VirtualizedContainerService.HintSize="476,1145" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -89,7 +88,7 @@
           </ActivityAction.Argument>
           <Sequence DisplayName="Do - Extrai Informações do Cliente" sap:VirtualizedContainerService.HintSize="376,776" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="ClientInformation" />
+              <Variable x:TypeArguments="x:String" Name="var_strClientInformation" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -108,15 +107,15 @@
                 </ui:Target>
               </ui:GetValue.Target>
               <ui:GetValue.Value>
-                <OutArgument x:TypeArguments="x:String">[ClientInformation]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[var_strClientInformation]</OutArgument>
               </ui:GetValue.Value>
             </ui:GetValue>
-            <Assign sap2010:Annotation.AnnotationText=".Substring - Corta o texto a partir do índice de caractere informado (pode ser delimitado quantos caracteres quer pegar).&#xD;&#xA;.IndexOf - Pega o valor do índice que vem antes do 1º caractere informado, retorando um int.&#xD;&#xA;.Length - Conta os caracteres, retorna int.&#xD;&#xA;Environment.NewLine - pula linha" DisplayName="Assign - ID Cliente" sap:VirtualizedContainerService.HintSize="334,207" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign sap2010:Annotation.AnnotationText=".Substring - Corta o texto a partir do índice de caractere informado (pode ser delimitado quantos caracteres quer pegar).&#xA;.IndexOf - Pega o valor do índice que vem antes do 1º caractere informado, retorando um int.&#xA;.Length - Conta os caracteres, retorna int.&#xA;Environment.NewLine - pula linha" DisplayName="Assign - ID Cliente" sap:VirtualizedContainerService.HintSize="334,207" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[ClientID]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[arg_out_strClientID]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[ClientInformation.Substring(ClientInformation.IndexOf("Client ID: ") + "Client ID: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                <InArgument x:TypeArguments="x:String">[var_strClientInformation.Substring(var_strClientInformation.IndexOf("Client ID: ") + "Client ID: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
               </Assign.Value>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -126,21 +125,21 @@
             </Assign>
             <Assign DisplayName="Assign - Nome Cliente" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[ClientName]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[arg_out_strClientName]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[ClientInformation.Substring(ClientInformation.IndexOf("Client Name: ") + "ClientName: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                <InArgument x:TypeArguments="x:String">[var_strClientInformation.Substring(var_strClientInformation.IndexOf("Client Name: ") + "ClientName: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
               </Assign.Value>
             </Assign>
             <Assign DisplayName="Assign - País Cliente" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[ClientCountry]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[arg_out_strClientCountry]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[ClientInformation.Substring(ClientInformation.IndexOf("Client Country: ") + "Client Country: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                <InArgument x:TypeArguments="x:String">[var_strClientInformation.Substring(var_strClientInformation.IndexOf("Client Country: ") + "Client Country: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Client Details: &quot; + ClientID + &quot; - &quot; + ClientName + &quot; - &quot; + ClientCountry]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Client Details: &quot; + arg_out_strClientID + &quot; - &quot; + arg_out_strClientName + &quot; - &quot; + arg_out_strClientCountry]" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>

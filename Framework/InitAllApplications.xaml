@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1200,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1140,827</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -77,17 +77,17 @@
     <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke System1_Login workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="System1\System1_Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="System1_URL">
+        <InArgument x:TypeArguments="x:String" x:Key="arg_in_strSystem1URL">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;System1_URL&quot;).ToString" />
         </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="System1_Credential">
+        <InArgument x:TypeArguments="x:String" x:Key="arg_in_strSystem1Credential">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;System1_Credential&quot;).ToString" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SHA1_Open workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="SHA1_Online\SHA1_Open.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="SHA1_URL">
+        <InArgument x:TypeArguments="x:String" x:Key="arg_in_strSha1URL">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;SHA1_Online_URL&quot;).ToString" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
